@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-hasten-darker text-foreground font-inter;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24;
+}
+
+.smooth-scroll-section {
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* Animation for scroll indicator */
+.scroll-indicator {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Parallax effect */
+.parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  background-position: center;
+  background-size: cover;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* Three.js canvas container */
+.three-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Glass effect */
+.glass-effect {
+  @apply bg-black/70 backdrop-blur-sm border border-white/10;
+  color: white;
+}
+
+/* Dot navigation */
+.dot-nav {
+  @apply fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden md:block;
+}
+
+.dot-nav .dot {
+  @apply w-2 h-2 rounded-full bg-white/30 my-6 cursor-pointer transition-all;
+}
+
+.dot-nav .dot.active {
+  @apply bg-white w-3 h-3;
+}
+
+/* Sound button */
+.sound-button {
+  @apply fixed bottom-6 left-6 z-50 w-10 h-10 rounded-full flex items-center justify-center bg-black border border-white/30 hover:bg-white/10 transition-colors;
+}
+
+.hover-card-effect {
+  @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:-translate-y-1;
+  color: white;
+}
+
+/* Minimalist lines */
+.vertical-line {
+  @apply absolute h-0 w-px bg-white/50 opacity-0 animate-line-appear;
+}
+
+/* Text effects */
+.spaced-text {
+  @apply font-mono uppercase tracking-widest text-white opacity-0 animate-text-appear;
+}
+
+/* Ripple effect */
+.ripple-circle {
+  @apply absolute rounded-full border border-white/30 animate-ripple;
+}
+
+/* WhatsApp floating button */
+.whatsapp-button {
+  @apply fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-green-500 shadow-lg hover:bg-green-600 transition-colors;
+}
+
+/* 3D Perspective for stars */
+.perspective-500 {
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+/* Stars styling */
+.stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateZ(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) translateZ(10px);
+  }
+}
+
+/* Service card styling */
+.service-card {
+  @apply relative overflow-hidden backdrop-blur-sm border border-white/10 p-6 rounded-md transition-all duration-300;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+}
+
+.service-card:hover {
+  @apply transform -translate-y-1 border-white/20;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.service-icon-container {
+  @apply p-3 rounded-full mb-4 inline-flex items-center justify-center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(10px);
+}
+
+/* Testimonial card styling */
+.testimonial-card {
+  @apply bg-black/50 backdrop-blur-lg border border-white/10 rounded-lg p-6 transition-all;
+}
+
+.testimonial-card:hover {
+  @apply border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)];
+}
+
+.testimonial-header {
+  @apply text-left font-mono text-xs tracking-wider text-white/70 mb-4;
+}
+
+.testimonial-content {
+  @apply text-left mb-8;
+}
+
+.testimonial-author {
+  @apply flex items-center;
+}
+
+.testimonial-author-image {
+  @apply w-10 h-10 rounded-full mr-3 object-cover border border-white/20;
+}
+
+/* About section styling */
+.about-image-container {
+  @apply relative rounded-lg overflow-hidden;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.about-image {
+  @apply w-full h-auto transition-transform duration-500;
+}
+
+.about-image-container:hover .about-image {
+  transform: scale(1.03);
+}
+
+.about-content-highlight {
+  @apply text-white/90 font-light italic my-5 pl-4 border-l-2 border-white/30;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.perspective-500 {
+  perspective: 500px;
+}
+
+/* Star animation styles */
+.stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+/* Subtle bounce animation for scroll indicator */
+@keyframes subtle-bounce {
+  0%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+.animate-subtle-bounce {
+  animation: subtle-bounce 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
